@@ -21,7 +21,7 @@ genresDB.all = () => {
 	});
 };
 
-genresDB.one = (id) => {
+genresDB.id = (id) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.genres where id = ?`, [id], (err, results) => {
 			if(err) {
@@ -32,7 +32,7 @@ genresDB.one = (id) => {
 	});
 };
 
-genresDB.one = (name) => {
+genresDB.name = (name) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.genres where name = ?`, [name], (err, results) => {
 			if(err) {

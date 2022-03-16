@@ -21,7 +21,7 @@ authorsBooksDB.all = () => {
 	});
 };
 
-authorsBooksDB.one = (id) => {
+authorsBooksDB.id = (id) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.authors_books where id = ?`, [id], (err, results) => {
 			if(err) {

@@ -13,9 +13,9 @@ router.get('/', async (req, res, next) => {
 	}
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/id/:id', async (req, res, next) => {
 	try {
-		let results = await db.one(req.params.id);
+		let results = await db.id(req.params.id);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/isbn/:isbn', async (req, res, next) => {
 	try {
-		let results = await db.one(req.params.isbn);
+		let results = await db.isbn(req.params.isbn);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
@@ -35,7 +35,7 @@ router.get('/isbn/:isbn', async (req, res, next) => {
 
 router.get('/title/:title', async (req, res, next) => {
 	try {
-		let results = await db.one(req.params.title);
+		let results = await db.title(req.params.title);
 		res.json(results);
 	} catch (error) {
 		console.log(error);

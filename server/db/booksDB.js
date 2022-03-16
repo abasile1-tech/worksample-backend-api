@@ -21,7 +21,7 @@ booksDB.all = () => {
 	});
 };
 
-booksDB.one = (id) => {
+booksDB.id = (id) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.books where id = ?`, [id], (err, results) => {
 			if(err) {
@@ -32,7 +32,7 @@ booksDB.one = (id) => {
 	});
 };
 
-booksDB.one = (isbn) => {
+booksDB.isbn = (isbn) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.books where isbn = ?`, [isbn], (err, results) => {
 			if(err) {
@@ -43,7 +43,7 @@ booksDB.one = (isbn) => {
 	});
 };
 
-booksDB.one = (title) => {
+booksDB.title = (title) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.books where title = ?`, [title], (err, results) => {
 			if(err) {

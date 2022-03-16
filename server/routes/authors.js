@@ -13,9 +13,9 @@ router.get('/', async (req, res, next) => {
 	}
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/id/:id', async (req, res, next) => {
 	try {
-		let results = await db.one(req.params.id);
+		let results = await db.id(req.params.id);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/name/:name', async (req, res, next) => {
 	try {
-		let results = await db.one(req.params.name);
+		let results = await db.name(req.params.name);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
