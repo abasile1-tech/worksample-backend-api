@@ -43,4 +43,15 @@ authorsBooksDB.book_id = (book_id) => {
 	});
 };
 
+authorsBooksDB.author_id = (author_id) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`SELECT * FROM oddhillschema.authors_books where author_id = ?`, [author_id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
 module.exports = authorsBooksDB;
