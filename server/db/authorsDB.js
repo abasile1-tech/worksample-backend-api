@@ -21,7 +21,7 @@ authorsDB.all = () => {
 	});
 };
 
-authorsDB.one = (id) => {
+authorsDB.id = (id) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.authors where id = ?`, [id], (err, results) => {
 			if(err) {
@@ -32,7 +32,7 @@ authorsDB.one = (id) => {
 	});
 };
 
-authorsDB.one = (name) => {
+authorsDB.name = (name) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.authors where name = ?`, [name], (err, results) => {
 			if(err) {

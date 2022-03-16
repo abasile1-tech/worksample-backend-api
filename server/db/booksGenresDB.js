@@ -21,7 +21,7 @@ booksGenresDB.all = () => {
 	});
 };
 
-booksGenresDB.one = (id) => {
+booksGenresDB.id = (id) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.books_genres where id = ?`, [id], (err, results) => {
 			if(err) {
