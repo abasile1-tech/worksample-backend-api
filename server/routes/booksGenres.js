@@ -23,4 +23,14 @@ router.get('/id/:id', async (req, res, next) => {
 	}
 });
 
+router.get('/book_id/:book_id', async (req, res, next) => {
+	try {
+		let results = await db.book_id(req.params.book_id);
+		res.json(results);
+	} catch (error) {
+		console.log(error);
+		res.sendStatus(500);
+	}
+});
+
 module.exports = router;

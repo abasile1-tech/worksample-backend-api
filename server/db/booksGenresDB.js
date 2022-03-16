@@ -32,4 +32,15 @@ booksGenresDB.id = (id) => {
 	});
 };
 
+booksGenresDB.book_id = (book_id) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`SELECT * FROM oddhillschema.books_genres where book_id = ?`, [book_id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
 module.exports = booksGenresDB;
