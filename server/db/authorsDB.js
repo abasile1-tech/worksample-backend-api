@@ -32,4 +32,15 @@ authorsDB.one = (id) => {
 	});
 };
 
+authorsDB.one = (name) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`SELECT * FROM oddhillschema.authors where name = ?`, [name], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results[0]);
+		});
+	});
+};
+
 module.exports = authorsDB;

@@ -32,4 +32,15 @@ genresDB.one = (id) => {
 	});
 };
 
+genresDB.one = (name) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`SELECT * FROM oddhillschema.genres where name = ?`, [name], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results[0]);
+		});
+	});
+};
+
 module.exports = genresDB;
