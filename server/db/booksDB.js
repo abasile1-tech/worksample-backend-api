@@ -43,4 +43,15 @@ booksDB.one = (isbn) => {
 	});
 };
 
+booksDB.one = (title) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`SELECT * FROM oddhillschema.books where title = ?`, [title], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results[0]);
+		});
+	});
+};
+
 module.exports = booksDB;
