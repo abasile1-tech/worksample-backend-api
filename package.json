@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "npx nodemon server/server.js -w server"
+    "dev": "npx nodemon server/index.js -w server"
   },
   "dependencies": {
     "express": "^4.17.3",

@@ -8,9 +8,9 @@ const pool = mysql.createPool({
 	port: '3306'
 })
 
-let authorsdb = {};
+let authorsDB = {};
 
-authorsdb.all = () => {
+authorsDB.all = () => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.authors`, (err, results) => {
 			if(err) {
@@ -21,7 +21,7 @@ authorsdb.all = () => {
 	});
 };
 
-authorsdb.one = (id) => {
+authorsDB.one = (id) => {
 	return new Promise((resolve,reject) => {
 		pool.query(`SELECT * FROM oddhillschema.authors where id = ?`, [id], (err, results) => {
 			if(err) {
@@ -32,4 +32,4 @@ authorsdb.one = (id) => {
 	});
 };
 
-module.exports = authorsdb;
+module.exports = authorsDB;
