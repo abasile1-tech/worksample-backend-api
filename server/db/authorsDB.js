@@ -43,4 +43,37 @@ authorsDB.name = (name) => {
 	});
 };
 
+authorsDB.postAuthor = (name,biography) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`INSERT INTO oddhillschema.authors (name,biography) VALUES (?,?)`, [name,biography], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
+authorsDB.putAuthor = (id,name,biography) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`UPDATE oddhillschema.authors SET name = ?, biography = ? WHERE id = ?;`, [name,biography,id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
+authorsDB.deleteAuthor = (id) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`DELETE FROM oddhillschema.authors WHERE id = ?;`, [id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
 module.exports = authorsDB;
