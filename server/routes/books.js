@@ -43,9 +43,10 @@ router.get('/title/:title', async (req, res, next) => {
 	}
 });
 
-router.post('/:title/:isbn/:description', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
 	try {
-		let results = await db.postBook(req.params.title,req.params.isbn,req.params.description);
+		console.log("req.body: ", req.body);
+		let results = await db.postBook(req.body.title,req.body.isbn,req.body.description);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
@@ -53,9 +54,9 @@ router.post('/:title/:isbn/:description', async (req, res, next) => {
 	}
 });
 
-router.put('/:id/:title/:isbn/:description', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
 	try {
-		let results = await db.putBook(req.params.id,req.params.title,req.params.isbn,req.params.description);
+		let results = await db.putBook(req.body.id,req.body.title,req.body.isbn,req.body.description);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
@@ -63,9 +64,9 @@ router.put('/:id/:title/:isbn/:description', async (req, res, next) => {
 	}
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/', async (req, res, next) => {
 	try {
-		let results = await db.deleteBook(req.params.id);
+		let results = await db.deleteBook(req.body.id);
 		res.json(results);
 	} catch (error) {
 		console.log(error);

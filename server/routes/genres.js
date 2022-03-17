@@ -33,9 +33,9 @@ router.get('/name/:name', async (req, res, next) => {
 	}
 });
 
-router.post('/:name', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
 	try {
-		let results = await db.postGenre(req.params.name);
+		let results = await db.postGenre(req.body.name);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
@@ -43,9 +43,9 @@ router.post('/:name', async (req, res, next) => {
 	}
 });
 
-router.put('/:id/:name', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
 	try {
-		let results = await db.putGenre(req.params.id,req.params.name);
+		let results = await db.putGenre(req.body.id,req.body.name);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
@@ -53,9 +53,9 @@ router.put('/:id/:name', async (req, res, next) => {
 	}
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/', async (req, res, next) => {
 	try {
-		let results = await db.deleteGenre(req.params.id);
+		let results = await db.deleteGenre(req.body.id);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
