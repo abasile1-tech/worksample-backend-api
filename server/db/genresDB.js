@@ -43,4 +43,37 @@ genresDB.name = (name) => {
 	});
 };
 
+genresDB.postGenre = (name) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`INSERT INTO oddhillschema.genres (name) VALUES (?)`, [name], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
+genresDB.putGenre = (id,name) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`UPDATE oddhillschema.genres SET name = ? WHERE id = ?;`, [name,id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
+genresDB.deleteGenre = (id) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`DELETE FROM oddhillschema.genres WHERE id = ?;`, [id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
 module.exports = genresDB;

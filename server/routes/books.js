@@ -43,4 +43,34 @@ router.get('/title/:title', async (req, res, next) => {
 	}
 });
 
+router.post('/:title/:isbn/:description', async (req, res, next) => {
+	try {
+		let results = await db.postBook(req.params.title,req.params.isbn,req.params.description);
+		res.json(results);
+	} catch (error) {
+		console.log(error);
+		res.sendStatus(500);
+	}
+});
+
+router.put('/:id/:title/:isbn/:description', async (req, res, next) => {
+	try {
+		let results = await db.putBook(req.params.id,req.params.title,req.params.isbn,req.params.description);
+		res.json(results);
+	} catch (error) {
+		console.log(error);
+		res.sendStatus(500);
+	}
+});
+
+router.delete('/:id', async (req, res, next) => {
+	try {
+		let results = await db.deleteBook(req.params.id);
+		res.json(results);
+	} catch (error) {
+		console.log(error);
+		res.sendStatus(500);
+	}
+});
+
 module.exports = router;
