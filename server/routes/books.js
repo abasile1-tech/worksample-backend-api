@@ -53,4 +53,14 @@ router.post('/:title/:isbn/:description', async (req, res, next) => {
 	}
 });
 
+router.put('/:id/:title/:isbn/:description', async (req, res, next) => {
+	try {
+		let results = await db.putBook(req.params.id,req.params.title,req.params.isbn,req.params.description);
+		res.json(results);
+	} catch (error) {
+		console.log(error);
+		res.sendStatus(500);
+	}
+});
+
 module.exports = router;

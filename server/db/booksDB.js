@@ -65,4 +65,15 @@ booksDB.postBook = (title,isbn,description) => {
 	});
 };
 
+booksDB.putBook = (id,title,isbn,description) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`UPDATE oddhillschema.books SET title = ?, isbn = ?, description = ? WHERE id = ?;`, [title,isbn,description,id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
 module.exports = booksDB;
