@@ -76,4 +76,15 @@ booksDB.putBook = (id,title,isbn,description) => {
 	});
 };
 
+booksDB.deleteBook = (id) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`DELETE FROM oddhillschema.books WHERE id = ?;`, [id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
 module.exports = booksDB;

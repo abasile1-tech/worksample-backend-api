@@ -63,4 +63,14 @@ router.put('/:id/:title/:isbn/:description', async (req, res, next) => {
 	}
 });
 
+router.delete('/:id', async (req, res, next) => {
+	try {
+		let results = await db.deleteBook(req.params.id);
+		res.json(results);
+	} catch (error) {
+		console.log(error);
+		res.sendStatus(500);
+	}
+});
+
 module.exports = router;
