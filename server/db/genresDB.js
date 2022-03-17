@@ -38,7 +38,7 @@ genresDB.name = (name) => {
 			if(err) {
 				return reject(err);
 			}
-			return resolve(results[0]);
+			return resolve(results);
 		});
 	});
 };

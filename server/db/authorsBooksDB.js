@@ -32,4 +32,26 @@ authorsBooksDB.id = (id) => {
 	});
 };
 
+authorsBooksDB.book_id = (book_id) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`SELECT * FROM oddhillschema.authors_books where book_id = ?`, [book_id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
+authorsBooksDB.author_id = (author_id) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`SELECT * FROM oddhillschema.authors_books where author_id = ?`, [author_id], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
 module.exports = authorsBooksDB;

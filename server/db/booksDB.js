@@ -38,7 +38,7 @@ booksDB.isbn = (isbn) => {
 			if(err) {
 				return reject(err);
 			}
-			return resolve(results[0]);
+			return resolve(results);
 		});
 	});
 };
@@ -49,7 +49,7 @@ booksDB.title = (title) => {
 			if(err) {
 				return reject(err);
 			}
-			return resolve(results[0]);
+			return resolve(results);
 		});
 	});
 };
