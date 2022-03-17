@@ -54,4 +54,15 @@ booksDB.title = (title) => {
 	});
 };
 
+booksDB.postBook = (title,isbn,description) => {
+	return new Promise((resolve,reject) => {
+		pool.query(`INSERT INTO oddhillschema.books (title,isbn,description) VALUES (?,?,?)`, [title,isbn,description], (err, results) => {
+			if(err) {
+				return reject(err);
+			}
+			return resolve(results);
+		});
+	});
+};
+
 module.exports = booksDB;

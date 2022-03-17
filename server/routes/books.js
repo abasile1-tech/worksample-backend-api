@@ -43,4 +43,14 @@ router.get('/title/:title', async (req, res, next) => {
 	}
 });
 
+router.post('/:title/:isbn/:description', async (req, res, next) => {
+	try {
+		let results = await db.postBook(req.params.title,req.params.isbn,req.params.description);
+		res.json(results);
+	} catch (error) {
+		console.log(error);
+		res.sendStatus(500);
+	}
+});
+
 module.exports = router;
