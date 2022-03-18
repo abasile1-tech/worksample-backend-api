@@ -2,11 +2,13 @@
 <div>
   <h1>Here is the list of books:</h1>
 	<div :key="book" v-for="(book) in this.booksObjectList">
-		{{book.title}} 
+		id: {{book.id}}
 		<br><br>
-		{{book.isbn}}
+		title: {{book.title}} 
 		<br><br>
-		{{book.description}}
+		isbn: {{book.isbn}}
+		<br><br>
+		description: {{book.description}}
 		<br><br>
 	</div>
 </div>

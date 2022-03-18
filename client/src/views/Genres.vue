@@ -2,7 +2,9 @@
 <div>
   <h1>Here is the list of genres:</h1>
 	<div :key="genre" v-for="(genre) in this.genresObjectList">
-		{{genre.name}} 
+		id: {{genre.id}}
+		<br><br>
+		name: {{genre.name}} 
 		<br><br>
 	</div>
 </div>

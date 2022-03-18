@@ -1,10 +1,26 @@
 <template>
 <div>
   <h1>Here is the list of authors:</h1>
+
+	<div v-if="!modificationPressed">
+		<button v-on:click="newAuthor()">New Author</button>
+		<button v-on:click="editAuthor()">Edit Author</button>
+		<button v-on:click="deleteAuthor()">Delete Author</button>
+	</div>
+
+	<div v-if="modificationPressed&&newAuthorPressed">
+		<input type="text" placeholder="Type the new author name:"  v-model="authorNameInput"/> 
+		<input type="text" placeholder="Type the new author biography:"  v-model="authorBioInput" @keyup.enter="submitNewAuthor()"/> 
+		<button v-on:click="submitNewAuthor()">Submit</button>
+	</div>
+
+
 	<div :key="author" v-for="(author) in this.authorsObjectList">
-		{{author.name}} 
+		id: {{author.id}}
 		<br><br>
-		{{author.biography}}
+		name: {{author.name}} 
+		<br><br>
+		biography: {{author.biography}}
 		<br><br>
 	</div>
 </div>
@@ -24,10 +40,35 @@ export default {
 	},
 	data () {
 		return {
-			authorsObjectList:[]
+			authorsObjectList:[],
+			modificationPressed:false,
+			newAuthorPressed: false,
+			editAuthorPressed:false,
+			deleteAuthorPressed:false,
+			authorNameInput:"",
+			authorBioInput:"",
 		}
 	},
 	methods: {
+		async newAuthor() {
+			this.newAuthorPressed = true;
+			this.modificationPressed = true;
+		},
+		async editAuthor() {
+			this.editAuthorPressed = true;
+			this.modificationPressed = true;
+		},
+		async deleteAuthor() {
+			this.deleteAuthorPressed = true;
+			this.modificationPressed = true;
+		},
+		async submitNewAuthor() {
+			await axios.post(urlAuthors,{name:this.authorNameInput, biography:this.authorBioInput});
+			this.authorNameInput = "";
+			this.authorBioInput = "";
+			const response = await axios.get(urlAuthors); 
+			this.authorsObjectList = response.data;
+		}
 
   },
   async created() {
