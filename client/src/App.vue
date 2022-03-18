@@ -1,117 +1,88 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <HelloWorld msg="Please log in" />
-
-      <nav>
-        <RouterLink to="/">Log In</RouterLink>
-        <RouterLink to="/signup">Sign Up</RouterLink>
-      </nav>
-    </div>
-  </header>
-
   <RouterView />
 </template>
 
 <style>
-@import '@/assets/base.css';
+h1{
+	font-size:xx-large;
+	margin-block-start: 0.3em;
+	margin-block-end: 0.2em;
+}
+
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
+	font-family: 'Roboto', sans-serif;
+	font-size: large;
+}
+button, input {
+	font-family: 'Roboto', sans-serif;
+	font-size: large;
+	margin: 0.3em;
+	border-radius: 8px;
+	border: none;
+	padding: 0.3em;
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+button {
+	color:#000000;
+	background-color:#2a96d5;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+/* The snackbar - position it at the bottom and in the middle of the screen */
+.snackbar {
+	visibility: hidden; /* Hidden by default. Visible on click */
+	min-width: 250px; /* Set a default minimum width */
+	/*margin-left: -125px;*/ /* Divide value of min-width by 2 */
+	background-color: #333; /* Black background color */
+	color: #fff; /* White text color */
+	text-align: center; /* Centered text */
+	border-radius: 2px; /* Rounded borders */
+	padding: 16px; /* Padding */
+	position: fixed; /* Sit on top of the screen */
+	z-index: 1; /* Add a z-index if needed */
+	/*left: 50%;*/ /* Center the snackbar */
+	bottom: 30px; /* 30px from the bottom */
+	/* I had to add these next ones to fix the formatting */
+	left:3px;
+	right:3px;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+.snackbar.show {
+	visibility: visible; /* Show the snackbar */
+	/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+	However, delay the fade out process for 2.5 seconds */
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+@keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+@-webkit-keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+@keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
 }
 </style>
