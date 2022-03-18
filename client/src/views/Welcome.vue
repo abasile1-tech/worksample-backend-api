@@ -3,7 +3,8 @@
 </template>
 
 <script>
-
+import axios from 'axios';
+const urlAuthors = 'http://localhost:5000/api/authors';
 
 export default {
 	name: 'Welcome',
@@ -20,6 +21,10 @@ export default {
 	},
 	methods: {
 
+  },
+  async created() {
+    const response = await axios.get(urlAuthors); 
+		console.log ("response.data: ", response.data);
   }
 }
 </script>
