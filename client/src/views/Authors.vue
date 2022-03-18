@@ -14,6 +14,13 @@
 		<button v-on:click="submitNewAuthor()">Submit</button>
 	</div>
 
+	<div v-if="modificationPressed&&editAuthorPressed">
+		<input type="text" placeholder="Type the new author id:"  v-model="authorIdInput"/> 
+		<input type="text" placeholder="Type the new author name:"  v-model="authorNameInput"/> 
+		<input type="text" placeholder="Type the new author biography:"  v-model="authorBioInput" @keyup.enter="submitEditedAuthor()"/> 
+		<button v-on:click="submitEditedAuthor()">Submit</button>
+	</div>
+
 
 	<div :key="author" v-for="(author) in this.authorsObjectList">
 		id: {{author.id}}
@@ -47,6 +54,7 @@ export default {
 			deleteAuthorPressed:false,
 			authorNameInput:"",
 			authorBioInput:"",
+			authorIdInput:""
 		}
 	},
 	methods: {
@@ -66,6 +74,16 @@ export default {
 			await axios.post(urlAuthors,{name:this.authorNameInput, biography:this.authorBioInput});
 			this.authorNameInput = "";
 			this.authorBioInput = "";
+			this.newAuthorPressed = false;
+			const response = await axios.get(urlAuthors); 
+			this.authorsObjectList = response.data;
+		},
+		async submitEditedAuthor() {
+			await axios.put(urlAuthors,{id:this.authorIdInput,name:this.authorNameInput, biography:this.authorBioInput});
+			this.authorIdInput = "";
+			this.authorNameInput = "";
+			this.authorBioInput = "";
+			this.editAuthorPressed = false;
 			const response = await axios.get(urlAuthors); 
 			this.authorsObjectList = response.data;
 		}
