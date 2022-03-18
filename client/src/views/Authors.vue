@@ -15,12 +15,16 @@
 	</div>
 
 	<div v-if="modificationPressed&&editAuthorPressed">
-		<input type="text" placeholder="Type the new author id:"  v-model="authorIdInput"/> 
+		<input type="text" placeholder="Type the author id:"  v-model="authorIdInput"/> 
 		<input type="text" placeholder="Type the new author name:"  v-model="authorNameInput"/> 
 		<input type="text" placeholder="Type the new author biography:"  v-model="authorBioInput" @keyup.enter="submitEditedAuthor()"/> 
 		<button v-on:click="submitEditedAuthor()">Submit</button>
 	</div>
 
+		<div v-if="modificationPressed&&deleteAuthorPressed">
+		<input type="text" placeholder="Type the author id:"  v-model="authorIdInput" @keyup.enter="submitDeletedAuthor()"/> 
+		<button v-on:click="submitDeletedAuthor()">Submit</button>
+	</div>
 
 	<div :key="author" v-for="(author) in this.authorsObjectList">
 		id: {{author.id}}
@@ -75,6 +79,7 @@ export default {
 			this.authorNameInput = "";
 			this.authorBioInput = "";
 			this.newAuthorPressed = false;
+			this.modificationPressed = false;
 			const response = await axios.get(urlAuthors); 
 			this.authorsObjectList = response.data;
 		},
@@ -84,6 +89,15 @@ export default {
 			this.authorNameInput = "";
 			this.authorBioInput = "";
 			this.editAuthorPressed = false;
+			this.modificationPressed = false;
+			const response = await axios.get(urlAuthors); 
+			this.authorsObjectList = response.data;
+		},
+		async submitDeletedAuthor() {
+			await axios.delete(urlAuthors+`/${this.authorIdInput}`);
+			this.authorIdInput = "";
+			this.deleteAuthorPressed = false;
+			this.modificationPressed = false;
 			const response = await axios.get(urlAuthors); 
 			this.authorsObjectList = response.data;
 		}

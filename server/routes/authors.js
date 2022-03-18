@@ -53,9 +53,9 @@ router.put('/', async (req, res, next) => {
 	}
 });
 
-router.delete('/', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
 	try {
-		let results = await db.deleteAuthor(req.body.id);
+		let results = await db.deleteAuthor(req.params.id);
 		res.json(results);
 	} catch (error) {
 		console.log(error);
