@@ -13,6 +13,21 @@ const router = createRouter({
       path: '/welcome',
       name: 'Welcome',
       component: () => import('../views/Welcome.vue')
+    },
+    {
+      path: '/authors',
+      name: 'Authors',
+      component: () => import('../views/Authors.vue')
+    },
+    {
+      path: '/books',
+      name: 'Books',
+      component: () => import('../views/Books.vue')
+    },
+    {
+      path: '/genres',
+      name: 'Genres',
+      component: () => import('../views/Genres.vue')
     }
   ]
 })

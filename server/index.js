@@ -1,4 +1,6 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const authors = require('./routes/authors');
 const authorsBooks = require('./routes/authorsBooks');
 const books = require('./routes/books');
@@ -12,6 +14,7 @@ app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 	next();
 })
+app.use(bodyParser.json());
 
 app.use('/api/authors', authors);
 app.use('/api/authorsBooks', authorsBooks);
