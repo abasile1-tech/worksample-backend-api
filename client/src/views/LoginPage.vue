@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+const urlLogin = 'http://localhost:5000/api/login';
 
 export default {
 	name: 'LoginPage',
@@ -47,6 +49,20 @@ export default {
 				this.clearLogInInputs();
 				return;
 			}
+
+			const responseFromLogin = await axios.post(urlLogin,{userName:this.userNameInput,userPassword:this.passwordInput});
+
+			if (responseFromLogin.status==205){
+				this.showSnackBar("snackbar1");
+				this.clearLogInInputs();
+				return;
+			}
+			if (responseFromLogin.status==202){
+				this.showSnackBar("snackbar2");
+				this.clearLogInInputs();
+				return;
+			}
+
 			this.clearLogInInputs();
 			this.$router.push({ path: '/welcome/' });
 		},

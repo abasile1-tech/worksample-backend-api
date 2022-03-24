@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const login = require('./routes/login');
 const authors = require('./routes/authors');
 const authorsBooks = require('./routes/authorsBooks');
 const books = require('./routes/books');
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use('/api/login', login);
 app.use('/api/authors', authors);
 app.use('/api/authorsBooks', authorsBooks);
 app.use('/api/books', books);
