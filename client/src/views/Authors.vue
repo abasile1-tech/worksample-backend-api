@@ -1,5 +1,15 @@
 <template>
 <div>
+	<div id="hamburgerMenu" v-on:click="hamburgerWasClicked">
+		<img id="hamburgerImage" src="../assets/Hamburger_icon_small.svg.png" alt="MENU">
+	</div>
+
+	<div id=hamburgerDropdown v-if="hamburgerClicked">
+		<button v-on:click="returnToLoginPage()">Log Out</button> <br>
+		<button v-on:click="goToBooks()">Books</button> <br>
+		<button v-on:click="goToGenres()">Genres</button> <br>
+	</div>
+
   <h1>Here is the list of authors:</h1>
 
 	<div v-if="!modificationPressed">
@@ -58,7 +68,8 @@ export default {
 			deleteAuthorPressed:false,
 			authorNameInput:"",
 			authorBioInput:"",
-			authorIdInput:""
+			authorIdInput:"",
+			hamburgerClicked:false
 		}
 	},
 	methods: {
@@ -100,6 +111,22 @@ export default {
 			this.modificationPressed = false;
 			const response = await axios.get(urlAuthors); 
 			this.authorsObjectList = response.data;
+		},
+		hamburgerWasClicked() {
+			if (!this.hamburgerClicked){
+				this.hamburgerClicked=true;
+			} else {
+				this.hamburgerClicked=false;
+			}
+		},
+		returnToLoginPage(){
+			this.$router.push({path: `/`});
+		},
+		goToBooks(){
+			this.$router.push({path: `/books`});
+		},
+		goToGenres(){
+			this.$router.push({path: `/genres`});
 		}
 
   },
@@ -111,6 +138,7 @@ export default {
 </script>
 
 <style scoped>
+
 
 
 </style>

@@ -37,6 +37,20 @@ button {
 	background-color:#2a96d5;
 }
 
+#hamburgerImage{
+	position: absolute;
+	top: 1em;
+	right: 1em;
+}
+
+#hamburgerDropdown {
+	position: absolute;
+	top: 4em;
+	right: 0em;
+	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+	background-color: white;
+}
+
 /* The snackbar - position it at the bottom and in the middle of the screen */
 .snackbar {
 	visibility: hidden; /* Hidden by default. Visible on click */
